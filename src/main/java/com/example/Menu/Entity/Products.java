@@ -17,23 +17,24 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "menu")
+@Table(name = "products")
 public class Products {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID uuid;
-    @OneToOne
-    @JoinColumn(name = "categoria_uuid", nullable = false)
-    @NotNull
-    @JsonIgnore
-    private Category categoria;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     @Column(name = "name")
     @NotBlank
     private String name;
-    @Column(name = "price")
+    @Column(name = "description")
     @NotBlank
+    private String description;
+    @Column(name = "price",precision = 11, scale = 2)
     private BigDecimal price;
     @Column(name = "amount")
-    @NotBlank
     private Long amount;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 }

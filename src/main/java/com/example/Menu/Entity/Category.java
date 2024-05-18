@@ -1,14 +1,13 @@
 package com.example.Menu.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.antlr.v4.runtime.misc.NotNull;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 import org.hibernate.validator.constraints.UniqueElements;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,16 +16,21 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "Categorias")
+@Table(name = "category")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
     private Long id;
-    @Column(name = "name_da_categoria", unique = true)
+    @Column(name = "name_category", unique = true)
     @NotBlank
     private String name;
-    @OneToMany(mappedBy = "categoria")
-    private List<Products> products;
+    @Setter(AccessLevel.NONE)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<Products> products = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "user_uuid", nullable = false)
+    @NotNull
+    private Login user;
 }

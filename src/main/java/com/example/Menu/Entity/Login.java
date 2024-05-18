@@ -19,7 +19,6 @@ import java.util.UUID;
 public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @NotNull
     private UUID uuid;
     @Column(name = "name")
     @NotBlank
