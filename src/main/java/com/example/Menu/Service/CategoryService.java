@@ -1,6 +1,7 @@
 package com.example.Menu.Service;
 
 import com.example.Menu.Entity.Category;
+import com.example.Menu.Exceptions.ResourceNotFoundExeception;
 import com.example.Menu.Repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,7 @@ public class CategoryService {
     }
     public Category findByName(String name){
         Optional<Category> obj = repository.findByName(name);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundExeception(name));
     }
     public void deleteByName(String name){
         repository.deleteByName(name);

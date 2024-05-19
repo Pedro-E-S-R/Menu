@@ -73,9 +73,14 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+							<mainClass>me.Menu.MenuApplication</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>
+
+
+
 	</build>
+
 
 </project>
