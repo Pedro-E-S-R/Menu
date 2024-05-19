@@ -1,1 +1,0 @@
-web: java -jar target/Menu-0.0.1-SNAPSHOT.jar
