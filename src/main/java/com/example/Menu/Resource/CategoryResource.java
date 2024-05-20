@@ -34,6 +34,6 @@ public class CategoryResource {
     @DeleteMapping("/{name}")
     public ResponseEntity<Void> deleteByName(@PathVariable String name) {
         service.deleteByName(name);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 }

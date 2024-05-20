@@ -34,7 +34,7 @@ public class Products {
     @Column(name = "amount")
     private Long amount;
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 }
